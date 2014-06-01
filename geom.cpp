@@ -1,4 +1,4 @@
-#include "sphere.h"
+#include "geom.h"
 
 void Sphere::paint() {
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);

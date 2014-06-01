@@ -1,5 +1,5 @@
-#ifndef SPHERE_H
-#define SPHERE_H
+#ifndef GEOM_H
+#define GEOM_H
 
 #include <GL/freeglut.h>
 

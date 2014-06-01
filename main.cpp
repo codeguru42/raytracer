@@ -7,7 +7,7 @@
  */
 #include <GL/freeglut.h>
 
-#include "sphere.h"
+#include "geom.h"
 
 #define MIN -5.0
 #define MAX  5.0

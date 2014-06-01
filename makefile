@@ -4,7 +4,7 @@
 # To Public License, Version 2, as published by Sam Hocevar. See
 # http://sam.zoy.org/wtfpl/COPYING for more details.
 LDLIBS = -lGL -lglut -lGLU
-OBJ = main.o sphere.o
+OBJ = main.o geom.o
 EXE = raytracer
 
 ${EXE}: ${OBJ}
@@ -13,6 +13,6 @@ ${EXE}: ${OBJ}
 clean:
 	rm *~ ${OBJ} ${EXE}
 
-main.o: sphere.h
+main.o: geom.h
 
-sphere.o: sphere.h
+sphere.o: geom.h
