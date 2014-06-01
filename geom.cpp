@@ -1,18 +1,32 @@
 #include "geom.h"
 
-Sphere:: Sphere(Point center, GLdouble radius)
-    : center (center)
-    , radius(radius)
-    , mat_diffuse{1.0, 0.0, 0.0, 0.0}
-    , mat_specular{ 1.0, 1.0, 1.0, 1.0 }
-    , mat_shininess{ 50.0 }
+Color::Color() {}
+
+Color::Color(GLfloat* mat_diffuse, GLfloat* mat_specular, GLfloat* mat_shininess)
+    : mat_diffuse  (mat_diffuse)
+    , mat_specular (mat_specular)
+    , mat_shininess(mat_shininess)
 {}
 
-void Sphere::paint() {
+void Color::tellGL() {
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
     glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+}
 
+Sphere:: Sphere(Point center, GLdouble radius)
+    : center(center)
+    , radius(radius)
+{}
+
+Sphere:: Sphere(Point center, GLdouble radius, Color color)
+    : center(center)
+    , radius(radius)
+    , color (color)
+{}
+
+void Sphere::paint() {
+    color.tellGL();
     glPushMatrix();
     glTranslatef(center.x, center.y, center.z);
     glutSolidSphere(radius, SLICES, STACKS);

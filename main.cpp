@@ -16,11 +16,28 @@ GLfloat pitch = -70.0;
 GLfloat yaw   =   0.0;
 GLfloat roll  =  30.0;
 
+GLfloat* mat_diffuse[3]
+  = { new GLfloat[4] { 1.0, 0.0, 0.0, 0.0}
+    , new GLfloat[4] { 0.0, 1.0, 0.0, 0.0}
+    , new GLfloat[4] { 0.0, 0.0, 1.0, 0.0}
+    };
+
+GLfloat mat_specular[4]
+  = { 1.0, 1.0, 1.0, 1.0 };
+
+GLfloat mat_shininess[1]
+  = {50.0};
+
 const int SPHERE_COUNT = 3;
+Color colors[SPHERE_COUNT]
+  = { Color(mat_diffuse[0], mat_specular, mat_shininess)
+    , Color(mat_diffuse[1], mat_specular, mat_shininess)
+    , Color(mat_diffuse[2], mat_specular, mat_shininess)
+    };
 Sphere spheres[SPHERE_COUNT]
-  = { Sphere(Point( 2.0,  0.0, 0.0), 1.0)
-    , Sphere(Point(-2.0,  2.0, 0.0), 1.0)
-    , Sphere(Point(-2.0, -2.0, 0.0), 1.0)
+  = { Sphere(Point( 1.0,  0.0, 0.0), 1.5, colors[0])
+    , Sphere(Point(-2.0,  2.0, 0.0), 2.0, colors[1])
+    , Sphere(Point(-2.0, -2.0, 0.0), 1.0, colors[2])
     };
 
 GLfloat lerp(GLfloat x,
