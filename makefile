@@ -8,7 +8,7 @@ OBJ = main.o geom.o
 EXE = raytracer
 
 ${EXE}: ${OBJ}
-	g++ -std=c++11 ${OBJ} ${LDLIBS} -o ${EXE}
+	g++ ${OBJ} ${LDLIBS} -o ${EXE}
 
 clean:
 	rm *~ ${OBJ} ${EXE}

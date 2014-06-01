@@ -16,7 +16,12 @@ GLfloat pitch = -70.0;
 GLfloat yaw   =   0.0;
 GLfloat roll  =  30.0;
 
-Sphere s(1.0);
+const int SPHERE_COUNT = 3;
+Sphere spheres[SPHERE_COUNT]
+  = { Sphere(Point( 2.0,  0.0, 0.0), 1.0)
+    , Sphere(Point(-2.0,  2.0, 0.0), 1.0)
+    , Sphere(Point(-2.0, -2.0, 0.0), 1.0)
+    };
 
 GLfloat lerp(GLfloat x,
              GLfloat xMin, GLfloat xMax,
@@ -33,7 +38,9 @@ void display() {
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  s.paint();
+  for (int i = 0; i < SPHERE_COUNT; ++i) {
+    spheres[i].paint();
+  }
 
   glutSwapBuffers();
 }
