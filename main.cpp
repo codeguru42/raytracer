@@ -10,6 +10,10 @@
 #define MIN -1.0
 #define MAX  1.0
 
+GLfloat pitch = -70.0;
+GLfloat yaw   =   0.0;
+GLfloat roll  =  30.0;
+
 GLfloat lerp(GLfloat x,
              GLfloat xMin, GLfloat xMax,
              GLfloat yMin, GLfloat yMax) {
@@ -19,6 +23,10 @@ GLfloat lerp(GLfloat x,
 void display() {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
+  glRotated(pitch, 1.0, 0.0, 0.0);
+  glRotated(yaw  , 0.0, 0.0, 1.0);
+  glRotated(roll , 0.0, 0.0, 1.0);
+
   glClear(GL_COLOR_BUFFER_BIT);
 
   glColor3f(1.0, 1.0, 1.0);
