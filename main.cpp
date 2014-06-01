@@ -7,12 +7,16 @@
  */
 #include <GL/freeglut.h>
 
-#define MIN -1.0
-#define MAX  1.0
+#include "sphere.h"
+
+#define MIN -5.0
+#define MAX  5.0
 
 GLfloat pitch = -70.0;
 GLfloat yaw   =   0.0;
 GLfloat roll  =  30.0;
+
+Sphere s(1.0);
 
 GLfloat lerp(GLfloat x,
              GLfloat xMin, GLfloat xMax,
@@ -27,22 +31,22 @@ void display() {
   glRotated(yaw  , 0.0, 0.0, 1.0);
   glRotated(roll , 0.0, 0.0, 1.0);
 
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  glColor3f(1.0, 1.0, 1.0);
-
-  glBegin(GL_TRIANGLES);
-  glVertex2f(1.0, 0.0);
-  glVertex2f(0.0, 1.0);
-  glVertex2f(-1.0, 0.0);
-  glEnd();
+  s.paint();
 
   glutSwapBuffers();
 }
 
 void init() {
   glClearColor(0.0, 0.0, 0.0, 0.0);
-  glShadeModel(GL_FLAT);
+  glShadeModel(GL_SMOOTH);
+
+  GLfloat light_position[] = { 1.0, 1.0, -1.0, 0.0 };
+  glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+  glEnable(GL_DEPTH_TEST);
 }
 
 void reshape(int w, int h) {
@@ -66,7 +70,7 @@ int main(int argc, char** argv) {
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
   glutInitWindowSize(800, 800);
   glutInitWindowPosition(100, 100);
-  glutCreateWindow("Surface3D");
+  glutCreateWindow("Raytracer");
   init();
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);

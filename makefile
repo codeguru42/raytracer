@@ -4,11 +4,15 @@
 # To Public License, Version 2, as published by Sam Hocevar. See
 # http://sam.zoy.org/wtfpl/COPYING for more details.
 LDLIBS = -lGL -lglut -lGLU
-OBJ = main.o
+OBJ = main.o sphere.o
 EXE = raytracer
 
 ${EXE}: ${OBJ}
-	g++ ${OBJ} ${LDLIBS} -o ${EXE}
+	g++ -std=c++11 ${OBJ} ${LDLIBS} -o ${EXE}
 
 clean:
 	rm *~ ${OBJ} ${EXE}
+
+main.o: sphere.h
+
+sphere.o: sphere.h
